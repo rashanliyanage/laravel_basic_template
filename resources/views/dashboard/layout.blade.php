@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" href="apple-icon.png">
     <link rel="shortcut icon" href="favicon.ico">
 
-
+    <link href="{{ asset('css/customer.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/normalize.css') }}">
     <link rel="stylesheet" href=" {{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href=" {{ asset('assets/css/font-awesome.min.css') }}">
@@ -29,22 +29,41 @@
 </head>
 <body>
     @include('dashboard.sidebar.sidebar')
+    <div id="right-panel" class="right-panel">
     @include('dashboard.header.header')
+    @yield('content')
+    </div>
 
 
 
 
-<script src="{{ asset('assets/js/vendor/jquery-2.1.4.min.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-<script src="{{ asset('assets/js/plugins.js') }}"></script>
-<script src="{{ asset('assets/js/main.js') }}"></script>
 
 
-<script src="{{ asset('assets/js/lib/chart-js/Chart.bundle.js') }}"></script>
-<script src="{{ asset('assets/js/dashboard.js') }}"></script>
-<script src="{{ asset('assets/js/widgets.js') }}"></script>
-<script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.js') }}"></script>
-<script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.min.js') }}"></script>
-<script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.sampledata.js') }}"></script>
-<script src="{{ asset('assets/js/lib/vector-map/country/jquery.vmap.world.js') }}"></script>
+
+
+
+
+
+    <!-- Scripts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+
+    <script src="{{ asset('js/main.js') }}"></script>
+    {{--<script src="{{ asset('js/app.js') }}"></script>--}}
+
+{{--<script src="{{ asset('assets/js/vendor/jquery-2.1.4.min.js') }}"></script>--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>--}}
+
+{{--<script src="{{ asset('assets/js/lib/chart-js/Chart.bundle.js') }}"></script>--}}
+{{--<script src="{{ asset('assets/js/widgets.js') }}"></script>--}}
+{{--<script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.js') }}"></script>--}}
+{{--<script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.min.js') }}"></script>--}}
+{{--<script src="{{ asset('assets/js/lib/vector-map/jquery.vmap.sampledata.js') }}"></script>--}}
+{{--<script src="{{ asset('assets/js/lib/vector-map/country/jquery.vmap.world.js') }}"></script>--}}
+
+
 </body>

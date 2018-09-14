@@ -12,13 +12,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $guard ='admin';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-         'email', 'password','firstname','lastname','contact','address','token','role_id'
+         'fullname', 'email','contact','password','role_id','	is_subscribed'
     ];
 
     /**
@@ -27,7 +29,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password','custom_id' ,'remember_token',
     ];
 
    public function Role(){
@@ -35,8 +37,8 @@ class User extends Authenticatable
        return $this->belongsTo("App\Role",'role_id');
    }
 
-   public function product(){
-       return $this->hasMany('App\Product');
+   public function Property(){
+       return $this->hasMany('App\Property');
 
    }
 

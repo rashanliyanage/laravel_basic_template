@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      *
@@ -40,6 +40,17 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function index(){
+
+
+    }
+    public function showRegistrationForm()
+    {
+            $roles =Role::where('custom_id','>',9)->get();
+
+        return view('auth.register')->with('roles',$roles);
     }
 
     /**
@@ -54,13 +65,14 @@ class RegisterController extends Controller
     {
 
         return Validator::make($data, [
-            'txtfirstName' => 'required',
-            'txtlastName' => 'required|max:255',
+            'txtfullname' => 'required|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'txtcontact' => 'required|max:12',
             'password' => 'required|min:6|confirmed',
+            'txtrole'=>'required',
             'password_confirmation' => 'required|min:6',
-            'txtaddress' => 'required',
+
+
 
         ]);
     }
@@ -79,20 +91,20 @@ class RegisterController extends Controller
     {
 
         $roles =Role::all();
-        $role_id =0;
+
         foreach ($roles as $role){
-          if($role->id ==2){
+          if($role->type === $data['txtrole']){
               $role_id =$role->id;
           }
         }
         return User::create([
-            'firstname' => $data['txtfirstName'],
-            'lastname' => $data['txtlastName'],
+            'fullname' => $data['txtfullname'],
             'email' => $data['email'],
             'contact' => $data['txtcontact'],
-            'address' => $data['txtaddress'],
-            'role_id' => $role_id,
+            'is_subscribed'=> $data['txtsubscribe'],
             'password' => Hash::make($data['password']),
+            'role_id' => $role_id,
+
         ]);
     }
 }

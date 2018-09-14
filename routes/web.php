@@ -11,15 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resources(['/dashboard' => 'admin\DashboardController']);
+Route::get('/', 'HomeController@index')->name('home');
 
 
-Route::view('/add-property', '/property/add-property');
+Route::get('/add-property', 'property\PropertyController@index')->middleware('auth');
 Route::post('/upload-property','property\PropertyController@store')->name('upload-property');
+
+Route::prefix('admin')->group(function () {
+    Route::get('/login', 'admin\AdminLoginController@showLoginForm')->name('admin-login');
+    Route::post('/login', 'admin\AdminLoginController@login')->name('admin-login-submit');
+    Route::get('/' ,'admin\DashboardController@index')->name('admin-dashboard');
+    Route::get('/create-new-role', 'admin\RoleController@index')->name('create-new-role');
+    Route::post('/create-new-role', 'admin\RoleController@createNewRole')->name('create-new-role');
+    Route::get('/all-users' ,'admin\DashboardController@index')->name('all-users');
+
+});

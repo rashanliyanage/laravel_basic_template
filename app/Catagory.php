@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Catagory extends Model
 {
+    protected $table ='catagory';
     protected $fillable =[
         'type'
 
@@ -18,6 +19,6 @@ class Catagory extends Model
 
     public function product(){
 
-        return $this->hasMany('App\Product');
+        return $this->hasMany('App\Property');
     }
 }
